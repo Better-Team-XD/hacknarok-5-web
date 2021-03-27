@@ -10,3 +10,7 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.image-parent {
+  max-width: 50%;
+}

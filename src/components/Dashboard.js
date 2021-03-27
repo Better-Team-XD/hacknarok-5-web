@@ -32,7 +32,7 @@ const Dashboard = () => {
               name="distance"
               placeholder="enter distance"
             />
-            <br></br>
+            <br/>
           </Form.Group>
           <Button variant="primary" type="submit" size="sm" block>
           filter
