@@ -4,6 +4,7 @@ import {
   Button
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './styles/form.css';
 
 const RegistrationForm = () => {
   const handleRegistration = async (event) => {
@@ -23,35 +24,42 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div>
-      <h3>register</h3>
-      <Form onSubmit={handleRegistration}>
-        <Form.Group>
-          <Form.Label>username</Form.Label>
-          <Form.Control
-            type="text"
-            name="username"
-            placeholder="enter username"
-          />
-          <Form.Label>email</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            placeholder="enter email"
-          />
-          <Form.Label>password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            placeholder="enter password"
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit" size="sm">
+    <div className="container">
+      <div className="wrapper">
+        <h3>register</h3>
+        <hr></hr>
+        <Form onSubmit={handleRegistration}>
+          <Form.Group>
+            <Form.Label>username</Form.Label>
+            <Form.Control
+              type="text"
+              name="username"
+              placeholder="enter username"
+            />
+            <br></br>
+            <Form.Label>email</Form.Label>
+            <Form.Control
+              type="email"
+              name="email"
+              placeholder="enter email"
+            />
+            <br></br>
+            <Form.Label>password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="enter password"
+            />
+            <br></br>
+          </Form.Group>
+          <Button variant="primary" type="submit" size="sm" block>
           register
-        </Button>
-      </Form>
-      <div>
-        already have an account? <Link to='/login'>log in</Link>
+          </Button>
+          <br></br>
+        </Form>
+        <div>
+          <p>already have an account? &nbsp;<Link to='/login'>log in</Link></p>
+        </div>
       </div>
     </div>
   );

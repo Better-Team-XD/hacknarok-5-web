@@ -10,10 +10,12 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/dashboard' component={Dashboard} />
-        <Route path='/login' component={LoginForm} />
-        <Route path='/register' component={RegistrationForm} />
+        <div className="bg">
+          <Route exact path='/' component={Home} />
+          <Route path='/dashboard' component={Dashboard} />
+          <Route path='/login' component={LoginForm} />
+          <Route path='/register' component={RegistrationForm} />
+        </div>
       </Switch>
     </Router>
   );
