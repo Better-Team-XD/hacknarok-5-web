@@ -3,12 +3,13 @@ import axios from 'axios';
 import './styles/dashboard.css';
 import Place from './Place';
 import { Form, Button } from 'react-bootstrap';
+import {API} from '../API';
 
 const Dashboard = () => {
   const [places, setPlaces] = useState([]);
 
   useEffect(() => {
-    axios.get('http://207.154.230.197/api/v1/places')
+    axios.get(`${API}api/v1/places`)
       .then(response => {
         console.log(response.data.data.content);
         setPlaces(response.data.data.content);
@@ -41,7 +42,7 @@ const Dashboard = () => {
       </div>
       <div className="places">
         {
-          places.map(place => 
+          places.map(place =>
             <Place key={place.id} place={place} />
           )
         }
