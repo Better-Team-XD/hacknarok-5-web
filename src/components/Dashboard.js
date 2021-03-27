@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './styles/dashboard.css';
 import Place from './Place';
+import { Form, Button } from 'react-bootstrap';
 
 const Dashboard = () => {
   const [places, setPlaces] = useState([]);
@@ -15,10 +16,28 @@ const Dashboard = () => {
       });
   }, []);
 
+  const handleSubmit = (event) => {
+    event.preventDeafult();
+  };
+
   return (
     <div className="container">
       <div className="filter">
-        FILTRY
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>distance</Form.Label>
+            <Form.Control
+              type="number"
+              name="distance"
+              placeholder="enter distance"
+            />
+            <br></br>
+          </Form.Group>
+          <Button variant="primary" type="submit" size="sm" block>
+          filter
+          </Button>
+          <br></br>
+        </Form>
       </div>
       <div className="places">
         {
