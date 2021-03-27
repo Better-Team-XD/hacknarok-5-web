@@ -1,28 +1,38 @@
 import React from 'react';
+import {
+  Form,
+  Button
+} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
 
-const LoginForm = () => {
-  const handleLogin = async (event) => {
+const RegistrationForm = () => {
+  const handleRegistration = async (event) => {
     event.preventDefault();
 
-    const user = {
-      username: event.target.email.value,
+    const newUser = {
+      username: event.target.username.value,
+      email: event.target.email.value,
       password: event.target.password.value
     };
 
+    event.target.username.value = '';
     event.target.email.value = '';
     event.target.password.value = '';
 
-    console.log(user);
+    console.log(newUser);    
   };
-
 
   return (
     <div>
-      <h3>log in to application</h3>
-      <Form onSubmit={handleLogin}>
+      <h3>register</h3>
+      <Form onSubmit={handleRegistration}>
         <Form.Group>
+          <Form.Label>username</Form.Label>
+          <Form.Control
+            type="text"
+            name="username"
+            placeholder="enter username"
+          />
           <Form.Label>email</Form.Label>
           <Form.Control
             type="email"
@@ -37,14 +47,14 @@ const LoginForm = () => {
           />
         </Form.Group>
         <Button variant="primary" type="submit" size="sm">
-          log in
+          register
         </Button>
       </Form>
       <div>
-        dont have an account yet? <Link to='/register'>register</Link>
+        already have an account? <Link to='/login'>log in</Link>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default RegistrationForm;
