@@ -12,13 +12,14 @@ const Dashboard = () => {
   const [isMoreWorking, setMore] = useState(true);
 
   useEffect(() => {
-    axios.get(`${API}api/v1/places?page=${currentPage}&sortBy=id`)
+    axios.get(`${API}api/v1/places?page=${currentPage}&sortBy=id&lon=0&lat=0&rad=1000`)
       .then(response => {
         if (currentPage < response.data.data.totalPages){
           setPlaces(places.concat(response.data.data.content));
           setMore(true);
         }
-        if (currentPage === response.data.data.totalPages - 1){
+
+        if (response.data.data.content.length !== response.data.data.size){
           setMore(false);
         }
       });
