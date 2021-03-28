@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './styles/dashboard.css';
-import {Form, Button} from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import {API} from '../API';
 import Place from './Place';
 
 const Dashboard = () => {
   const [places, setPlaces] = useState([]);
   const [currentPage, setPage] = useState(0);
+  const [distance, setDistance] = useState(1);
 
   useEffect(() => {
-    alert('asdasd');
     axios.get(`${API}api/v1/places?page=${currentPage}`)
       .then(response => {
         // console.log(response.data.data.content);
@@ -21,7 +21,14 @@ const Dashboard = () => {
   }, [currentPage]);
 
   const handleSubmit = (event) => {
-    event.preventDeafult();
+    event.preventDefault();
+    setDistance(event.target.distance.value);
+    axios.get(`${API}api/v1/places?distance=${distance}`)
+      .then(response => {
+        console.log(response.data.data.content);
+        setPlaces(response.data.data.content);
+        console.log(places);
+      });
   };
 
   const handleClick = () => {
@@ -33,21 +40,23 @@ const Dashboard = () => {
 
   return (
     <div >
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>distance (km)</Form.Label>
-          <Form.Control
-            type="number"
-            name="distance"
-            placeholder="enter distance"
-          />
-          <br/>
-        </Form.Group>
-        <Button variant="primary" type="submit" size="sm" block>
+      <div className="filter">
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>distance from your location (km)</Form.Label>
+            <Form.Control
+              type="number"
+              name="distance"
+              placeholder="enter distance"
+            />
+            <br/>
+          </Form.Group>
+          <Button variant="primary" type="submit" size="sm" block>
           filter
-        </Button>
-        <br />
-      </Form>
+          </Button>
+          <br></br>
+        </Form>
+      </div>
       <div className="container">
         <div className="row">
           {cards}
@@ -58,8 +67,6 @@ const Dashboard = () => {
           <Button variant="dark" onClick={handleClick}>More</Button>
         </div>
       </div>
-
-
 
     </div>
   );
