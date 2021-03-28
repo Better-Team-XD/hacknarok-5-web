@@ -6,6 +6,7 @@ import {API} from '../API';
 
 const Dashboard = () => {
   const [places, setPlaces] = useState([]);
+  const [distance, setDistance] = useState(1);
 
   useEffect(() => {
     axios.get(`${API}api/v1/places`)
@@ -17,26 +18,35 @@ const Dashboard = () => {
   }, []);
 
   const handleSubmit = (event) => {
-    event.preventDeafult();
+    event.preventDefault();
+    setDistance(event.target.distance.value);
+    axios.get(`${API}api/v1/places?distance=${distance}`)
+      .then(response => {
+        console.log(response.data.data.content);
+        setPlaces(response.data.data.content);
+        console.log(places);
+      });
   };
 
   return (
     <div >
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>distance (km)</Form.Label>
-          <Form.Control
-            type="number"
-            name="distance"
-            placeholder="enter distance"
-          />
-          <br/>
-        </Form.Group>
-        <Button variant="primary" type="submit" size="sm" block>
+      <div className="filter">
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>distance from your location (km)</Form.Label>
+            <Form.Control
+              type="number"
+              name="distance"
+              placeholder="enter distance"
+            />
+            <br/>
+          </Form.Group>
+          <Button variant="primary" type="submit" size="sm" block>
           filter
-        </Button>
-        <br></br>
-      </Form>
+          </Button>
+          <br></br>
+        </Form>
+      </div>
 
       <div>
         {
