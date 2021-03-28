@@ -6,7 +6,7 @@ import {Card} from 'react-bootstrap';
 const Place = ({ place }) => {
   console.log(place);
   return (
-    <div className="col-4 col-md-3 mt-3 card-element">
+    <div className="col-4 col-md-3 mt-5 card-element">
       <Card>
         <Card.Img variant="top" src={place.imageUrl} />
         <Card.Body>
