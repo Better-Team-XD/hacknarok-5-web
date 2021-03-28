@@ -3,6 +3,7 @@ import axios from 'axios';
 import './styles/dashboard.css';
 import { Form, Button } from 'react-bootstrap';
 import {API} from '../API';
+import Place from './Place';
 
 const Dashboard = () => {
   const [places, setPlaces] = useState([]);
@@ -28,6 +29,8 @@ const Dashboard = () => {
       });
   };
 
+  const cards = places.map((place,i) => <Place key={i} place={place}/>);
+
   return (
     <div >
       <div className="filter">
@@ -47,12 +50,10 @@ const Dashboard = () => {
           <br></br>
         </Form>
       </div>
-      <div>
-        {
-          places.map((place,i) => 
-            <div key={i}>papiesz</div>
-          )
-        }
+      <div className="container">
+        <div className="row">
+          {cards}
+        </div>
       </div>
 
     </div>
