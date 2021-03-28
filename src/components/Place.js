@@ -1,11 +1,14 @@
 import React from 'react';
 
-const Place = () => {
-  return (
-    <div>
+class Place extends React.Component {
+    render() {
+        console.log(this.props);
+        return (
+            <div>
+                {this.props.match.params.id}
+            </div>
 
-    </div>
-  );
-};
-
+        )
+    }
+}
 export default Place;
