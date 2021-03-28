@@ -15,7 +15,7 @@ const PlaceCard = ({ place }) => {
         <Link to={`place/${place.id}`} >
           <Card.Img variant="top" src={place.imageUrl} />
           <Card.Body>
-            <Card.Title>{place.name}</Card.Title>
+            <Card.Title>{place.name} id: {place.id}</Card.Title>
             <Card.Text>
               {place.location.city} {place.location.street}
             </Card.Text>
