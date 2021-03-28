@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './styles/dashboard.css';
-import { Form, Button } from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 import {API} from '../API';
+import Place from './Place';
 
 const Dashboard = () => {
   const [places, setPlaces] = useState([]);
@@ -20,6 +21,8 @@ const Dashboard = () => {
     event.preventDeafult();
   };
 
+  const cards = places.map((place,i) => <Place key={i} place={place}/>);
+
   return (
     <div >
       <Form onSubmit={handleSubmit}>
@@ -35,16 +38,15 @@ const Dashboard = () => {
         <Button variant="primary" type="submit" size="sm" block>
           filter
         </Button>
-        <br></br>
+        <br />
       </Form>
-
-      <div>
-        {
-          places.map((place,i) => 
-            <div key={i}>papiesz</div>
-          )
-        }
+      <div className="container">
+        <div className="row">
+          {cards}
+        </div>
       </div>
+
+
 
     </div>
   );
