@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './styles/dashboard.css';
-import Place from './Place';
 import { Form, Button } from 'react-bootstrap';
 import {API} from '../API';
 
@@ -22,31 +21,31 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="container">
-      <div className="filter">
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <Form.Label>distance</Form.Label>
-            <Form.Control
-              type="number"
-              name="distance"
-              placeholder="enter distance"
-            />
-            <br/>
-          </Form.Group>
-          <Button variant="primary" type="submit" size="sm" block>
+    <div >
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label>distance (km)</Form.Label>
+          <Form.Control
+            type="number"
+            name="distance"
+            placeholder="enter distance"
+          />
+          <br/>
+        </Form.Group>
+        <Button variant="primary" type="submit" size="sm" block>
           filter
-          </Button>
-          <br></br>
-        </Form>
-      </div>
-      <div className="places">
+        </Button>
+        <br></br>
+      </Form>
+
+      <div>
         {
-          places.map(place =>
-            <Place key={place.id} place={place} />
+          places.map((place,i) => 
+            <div key={i}>papiesz</div>
           )
         }
       </div>
+
     </div>
   );
 };
