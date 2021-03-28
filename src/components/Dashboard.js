@@ -9,14 +9,18 @@ const Dashboard = () => {
   const [places, setPlaces] = useState([]);
   const [currentPage, setPage] = useState(0);
   const [distance, setDistance] = useState(1);
+  const [isMoreWorking, setMore] = useState(true);
 
   useEffect(() => {
     axios.get(`${API}api/v1/places?page=${currentPage}&sortBy=id`)
       .then(response => {
-        // console.log(response.data.data.content);
-
-        setPlaces(places.concat(response.data.data.content));
-        // console.log(places);
+        if (currentPage < response.data.data.totalPages){
+          setPlaces(places.concat(response.data.data.content));
+          setMore(true);
+        }
+        if (currentPage === response.data.data.totalPages - 1){
+          setMore(false);
+        }
       });
   }, [currentPage]);
 
@@ -54,7 +58,7 @@ const Dashboard = () => {
           <Button variant="primary" type="submit" size="sm" block>
           filter
           </Button>
-          <br></br>
+          <br />
         </Form>
       </div>
       <div className="container">
@@ -64,7 +68,7 @@ const Dashboard = () => {
       </div>
       <div className="container">
         <div className="row-cols-1 mt-5">
-          <Button variant="dark" onClick={handleClick}>More</Button>
+          {isMoreWorking && <Button variant="dark" onClick={handleClick}>More</Button>}
         </div>
       </div>
 
