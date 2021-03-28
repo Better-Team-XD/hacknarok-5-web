@@ -47,7 +47,6 @@ const Dashboard = () => {
           <br></br>
         </Form>
       </div>
-
       <div>
         {
           places.map((place,i) => 
