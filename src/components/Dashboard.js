@@ -43,7 +43,7 @@ const Dashboard = () => {
   const cards = places.map((place,i) => <PlaceCard key={i} place={place}/>);
 
   return (
-    <div >
+    <div>
       <div className="filter">
         <Form onSubmit={handleSubmit}>
           <Form.Group>
