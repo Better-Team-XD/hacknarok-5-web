@@ -3,7 +3,7 @@ import React from 'react';
 import './styles/item.css';
 import {Card} from 'react-bootstrap';
 
-const Place = ({ place }) => {
+const PlaceCard = ({ place }) => {
   console.log(place);
   return (
     <div className="col-4 col-md-3 mt-3 card-element">
@@ -23,4 +23,4 @@ const Place = ({ place }) => {
   );
 };
 
-export default Place;
+export default PlaceCard;

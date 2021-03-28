@@ -3,7 +3,7 @@ import axios from 'axios';
 import './styles/dashboard.css';
 import { Form, Button } from 'react-bootstrap';
 import {API} from '../API';
-import Place from './Place';
+import PlaceCard from './PlaceCard';
 
 const Dashboard = () => {
   const [places, setPlaces] = useState([]);
@@ -25,7 +25,7 @@ const Dashboard = () => {
   }, [currentPage]);
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     setDistance(event.target.distance.value);
     axios.get(`${API}api/v1/places?distance=${distance}`)
       .then(response => {
@@ -40,7 +40,7 @@ const Dashboard = () => {
     console.log(currentPage);
   };
 
-  const cards = places.map((place,i) => <Place key={i} place={place}/>);
+  const cards = places.map((place,i) => <PlaceCard key={i} place={place}/>);
 
   return (
     <div >
@@ -71,7 +71,6 @@ const Dashboard = () => {
           {isMoreWorking && <Button variant="dark" onClick={handleClick}>More</Button>}
         </div>
       </div>
-
     </div>
   );
 };
