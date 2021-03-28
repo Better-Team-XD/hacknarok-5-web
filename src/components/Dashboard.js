@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [distance, setDistance] = useState(1);
 
   useEffect(() => {
-    axios.get(`${API}api/v1/places?page=${currentPage}`)
+    axios.get(`${API}api/v1/places?page=${currentPage}&sortBy=id`)
       .then(response => {
         // console.log(response.data.data.content);
 
