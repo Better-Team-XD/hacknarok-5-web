@@ -61,8 +61,8 @@ const Dashboard = () => {
           <br />
         </Form>
       </div>
-      <div className="container">
-        <div className="row">
+      <div className="container-fluid">
+        <div className="row d-flex justify-content-around">
           {cards}
         </div>
       </div>
