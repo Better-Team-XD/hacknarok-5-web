@@ -7,18 +7,26 @@ import Place from './Place';
 
 const Dashboard = () => {
   const [places, setPlaces] = useState([]);
+  const [currentPage, setPage] = useState(0);
 
   useEffect(() => {
-    axios.get(`${API}api/v1/places`)
+    alert('asdasd');
+    axios.get(`${API}api/v1/places?page=${currentPage}`)
       .then(response => {
-        console.log(response.data.data.content);
-        setPlaces(response.data.data.content);
-        console.log(places);
+        // console.log(response.data.data.content);
+
+        setPlaces(places.concat(response.data.data.content));
+        // console.log(places);
       });
-  }, []);
+  }, [currentPage]);
 
   const handleSubmit = (event) => {
     event.preventDeafult();
+  };
+
+  const handleClick = () => {
+    setPage(currentPage + 1);
+    console.log(currentPage);
   };
 
   const cards = places.map((place,i) => <Place key={i} place={place}/>);
@@ -43,6 +51,11 @@ const Dashboard = () => {
       <div className="container">
         <div className="row">
           {cards}
+        </div>
+      </div>
+      <div className="container">
+        <div className="row-cols-1 mt-5">
+          <Button variant="dark" onClick={handleClick}>More</Button>
         </div>
       </div>
 
